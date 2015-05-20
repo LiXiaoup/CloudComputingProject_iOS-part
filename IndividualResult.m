@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "IndividualResult.h"
 
 @interface IndividualResult ()
@@ -28,64 +29,95 @@
 {
     [super viewDidLoad];
     
-    UIColor* mainColor = [UIColor colorWithRed:246.0/255 green:207.0/255 blue:226.0/255 alpha:0.2f];
+    UIColor* mainColor = [UIColor colorWithRed:246.0/255 green:207.0/255 blue:226.0/255 alpha:0.8f];
+    UIColor* labelColor = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.4f];
+    UIColor* textColor = [UIColor whiteColor];
     
     NSString* fontName = @"GillSans-Italic";
     NSString* boldFontName = @"GillSans-Bold";
     
     self.individualResultButtonView.tintColor =  [UIColor whiteColor];
+    self.individualResultBrandView.tintColor =  [UIColor whiteColor];
+    self.individualResultPriceView.tintColor =  [UIColor whiteColor];
     
-    self.individualResultBrandView.backgroundColor = mainColor;
-    self.individualResultPriceView.backgroundColor = mainColor;
+    UIFont* countLabelFont = [UIFont fontWithName:fontName size:20.0f];
+    self.individualResultPriceLabel.textColor =  textColor;
+    self.individualResultPriceLabel.font =  countLabelFont;
+    self.individualResultPriceLabel.text = @"Price";
     
+    UIFont* socialFont = [UIFont fontWithName:fontName size:10.0f];
+    UIFont* labelFont = [UIFont fontWithName:fontName size:20.0f];
+    UIColor* socialColor = [UIColor lightGrayColor];
     
-    //    UIFont* countLabelFont = [UIFont fontWithName:boldFontName size:20.0f];
-    //    self.brandCountLabel.textColor =  mainColor;
-    //    self.brandCountLabel.font =  countLabelFont;
-    //    self.brandCountLabel.text = @"21";
+    self.individualResultBrandLabel.textColor =  textColor;
+    self.individualResultBrandLabel.font =  labelFont;
+    self.individualResultBrandLabel.text = @"Brand";
     
-    //    UIFont* socialFont = [UIFont fontWithName:boldFontName size:7.0f];
-    //    UIColor* socialColor = [UIColor lightGrayColor];
+    self.individualResultDescriptionLabel.textColor =  textColor;
+    self.individualResultDescriptionLabel.font =  socialFont;
+    self.individualResultDescriptionLabel.text = @"Detailed Description";
     
-    //    self.brandLabel.textColor =  socialColor;
-    //    self.brandLabel.font =  socialFont;
-    //    self.brandLabel.text = @"BRANDS in LOVE";
+    self.individualResultBgImageView.image = [UIImage imageNamed:@"bg_2.png"];
+    //self.individualResultBgImageView.backgroundColor = mainColor;
     
-    //    UIFont* labelFont = [UIFont fontWithName:boldFontName size:14.0f];
-    
-    //    self.joinedLabel.textColor =  mainColor;
-    //    self.joinedLabel.font =  labelFont;
-    //    self.joinedLabel.text = @"Joined";
-    
-    //    UIFont* valueFont = [UIFont fontWithName:fontName size:14.0f];
-    
-    //    self.joinedValueLabel.textColor =  mainColor;
-    //    self.joinedValueLabel.font =  valueFont;
-    //    self.joinedValueLabel.text = @"1 Year Ago";
-    //self.resultGroupBgImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 600)];
-    self.individualResultBgImageView.image = [UIImage imageNamed:@"pink_bg2.jpg"];
-    
-    self.individualResultImageView.image = [UIImage imageNamed:@"1.jpg"];
+    self.individualResultImageView.image = [UIImage imageNamed:@"3.jpg"];
+    self.individualResultImageView.alpha = 0.95f;
     self.individualResultImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.individualResultImageView.clipsToBounds = YES;
-    //self.profileImageView.layer.cornerRadius = 48.0f;
-    //self.resultGroupObjectImageView.layer.borderWidth = 4.0f;
-    //self.resultGroupObjectImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.individualResultBrandView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
-    //self.resultGroupTitleView.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
-    //self.resultGroupTitleView.layer.borderWidth = 1.0f;
+    CALayer *lay  = self.individualResultImageView.layer;//获取ImageView的层
+    [lay setMasksToBounds:YES];
+    [lay setCornerRadius:3.0];//值越大，角度越圆
     
-    UIColor* imageBorderColor = [UIColor colorWithRed:222.0/255 green:59.0/255 blue:47.0/255 alpha:0.4f];
+    CALayer *lay1  = self.individualResultBrandView.layer;//获取ImageView的层
+    [lay1 setMasksToBounds:YES];
+    [lay1 setCornerRadius:5.0];//值越大，角度越圆
     
+    CALayer *lay2  = self.individualResultPriceView.layer;//获取ImageView的层
+    [lay2 setMasksToBounds:YES];
+    [lay2 setCornerRadius:5.0];//值越大，角度越圆
+    
+    self.individualResultBrandView.backgroundColor = labelColor;
+    self.individualResultPriceView.backgroundColor = labelColor;
+   // self.individualResultButtonView.backgroundColor = [UIColor colorWithRed:246.0/255 green:207.0/255 blue:226.0/255 alpha:1.0f];
+    self.individualResultBgView.backgroundColor = [UIColor whiteColor];
+    
+    //UIButton* individualResultLikeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.individualResultLikeButton setTitle:@"Like" forState:UIControlStateNormal];
+    [self.individualResultLikeButton sizeToFit];
+    self.individualResultLikeButton.center = CGPointMake(121, 623);
+    
+    //Add action when Like Button Pressed
+    [self.individualResultLikeButton addTarget:self action:@selector(likeButtonPressed:)
+                         forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.individualResultLikeButton];
+    
+    
+    //UIButton* individualResultShopButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.individualResultShopButton setTitle:@"Shop" forState:UIControlStateNormal];
+    [self.individualResultShopButton sizeToFit];
+    self.individualResultShopButton.center = CGPointMake(279, 623);
+    
+    //Add action when Shop Button Pressed
+    [self.individualResultShopButton addTarget:self action:@selector(shopButtonPressed:)
+                         forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.individualResultShopButton];
+     
 }
 
 -(IBAction)toggleNav:(id)sender{
-    
     BOOL hidden = !self.navigationController.navigationBarHidden;
     [self.navigationController setNavigationBarHidden:hidden animated:YES];
 }
 
+-(void)likeButtonPressed:(UIButton*)individualResultLikeButton {
+        NSLog(@"Like Button Pressed");}
+
+-(void)shopButtonPressed:(UIButton*)individualResultShopButton {
+        NSLog(@"Shop Button Pressed");}
+    
 -(void)styleSearchResultImage:(UIImageView*)imageView withImageNamed:(NSString*)imageName andColor:(UIColor*)color{
     
     imageView.image = [UIImage imageNamed:imageName];
@@ -103,3 +135,5 @@
 }
 
 @end
+
+

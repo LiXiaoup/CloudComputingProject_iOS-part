@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UIView* individualResultButtonView;
 @property (nonatomic, weak) IBOutlet UIView* individualResultBrandView;
 @property (nonatomic, weak) IBOutlet UIView* individualResultPriceView;
+@property (nonatomic, weak) IBOutlet UIView* individualResultBgView;
 
 @property (nonatomic, weak) IBOutlet UILabel* individualResultBrandLabel;
 @property (nonatomic, weak) IBOutlet UILabel* individualResultDescriptionLabel;

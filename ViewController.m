@@ -44,7 +44,7 @@
     //self.headerImage.image = [UIImage imageNamed:@"pink_bg2.jpg"];
     [self.buttonCamera setBackgroundImage:[UIImage imageNamed:@"search-icon@2x.jpg"] forState:UIControlStateNormal];
     
-    self.headerView.backgroundColor = mainColor;
+   // self.headerView.backgroundColor = mainColor;
     
     
     
