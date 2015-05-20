@@ -23,5 +23,6 @@
 @property (nonatomic, weak) IBOutlet UIView * infoView;
 
 @property (nonatomic, weak) IBOutlet UILabel * infoLabel;
+- (IBAction)ButtonSignup:(id)sender;
 
 @end

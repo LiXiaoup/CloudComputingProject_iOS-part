@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QLO-rP-a6S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AQd-dk-CnK">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Camera View Controller-->
@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LrQ-Cr-ok1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="207" y="543"/>
+            <point key="canvasLocation" x="267" y="447"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Tp7-S4-GV8">
@@ -410,6 +410,7 @@
                                     <rect key="frame" x="-32" y="316" width="432" height="61"/>
                                 </variation>
                                 <connections>
+                                    <action selector="ButtonSignup:" destination="4gE-OL-zmh" eventType="touchUpInside" id="hLX-2w-xRM"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="ETn-eu-hlB"/>
                                 </connections>
                             </button>
@@ -830,13 +831,25 @@
                                     <rect key="frame" x="18" y="458" width="106" height="105"/>
                                 </variation>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2be-hU-HSK">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="320" y="28" width="32" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="Vic-Ul-plr" kind="show" id="bPR-4G-BK6"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmf-O4-36M">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="18" y="7" width="35" height="30"/>
+                                    <rect key="frame" x="16" y="28" width="35" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="N95-zW-vHV"/>
@@ -855,6 +868,7 @@
                                 <exclude reference="8BB-y2-BlF"/>
                                 <exclude reference="h4w-SK-oXN"/>
                                 <exclude reference="2hd-jf-5gK"/>
+                                <exclude reference="2be-hU-HSK"/>
                                 <exclude reference="pmf-O4-36M"/>
                             </mask>
                         </variation>
@@ -869,6 +883,7 @@
                                 <include reference="8BB-y2-BlF"/>
                                 <include reference="h4w-SK-oXN"/>
                                 <include reference="2hd-jf-5gK"/>
+                                <include reference="2be-hU-HSK"/>
                                 <include reference="pmf-O4-36M"/>
                             </mask>
                         </variation>
@@ -1042,6 +1057,18 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qn-kZ-4o7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="9" y="20" width="35" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="ZvC-hN-BdJ" kind="show" id="GfE-3j-Rh1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -1051,6 +1078,7 @@
                                 <exclude reference="S13-Oo-eBZ"/>
                                 <exclude reference="vKF-F9-vxg"/>
                                 <exclude reference="ywl-bf-Jg9"/>
+                                <exclude reference="8Qn-kZ-4o7"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1060,6 +1088,7 @@
                                 <include reference="S13-Oo-eBZ"/>
                                 <include reference="vKF-F9-vxg"/>
                                 <include reference="ywl-bf-Jg9"/>
+                                <include reference="8Qn-kZ-4o7"/>
                             </mask>
                         </variation>
                     </view>
@@ -1078,7 +1107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAE-Z3-mJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-828" y="-1067"/>
+            <point key="canvasLocation" x="990" y="-264"/>
         </scene>
     </scenes>
     <resources>
@@ -1088,6 +1117,6 @@
         <image name="title.png" width="245" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N95-zW-vHV"/>
+        <segue reference="ETn-eu-hlB"/>
     </inferredMetricsTieBreakers>
 </document>

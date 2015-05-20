@@ -9,8 +9,11 @@
 #import "SignupController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface SignupController()
+static NSString* const kBaseURL = @"http://localhost:8081/";
+static NSString* const kSignup = @"signup";
 
+@interface SignupController()
+@property (nonatomic, strong) NSMutableArray* objects;
 @end
 
 @implementation SignupController
@@ -26,6 +29,7 @@
 
 - (void)viewDidLoad
 {
+    //
     [super viewDidLoad];
 	
     UIColor* mainColor = [UIColor colorWithRed:246.0/255 green:207.0/255 blue:226.0/255 alpha:1.0f];
@@ -116,4 +120,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)ButtonSignup:(id)sender {
+    
+    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:kSignup]]; //1
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"GET"; //2
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"]; //3
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration]; //4
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
+        if (error == nil) {
+            [self.objects removeAllObjects]; //2
+            NSArray* responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSLog(@"received %lu items", (unsigned long)responseArray.count);
+        }
+    }];
+    
+    [dataTask resume]; //8
+    
+}
 @end
