@@ -47,6 +47,10 @@
 		70A9EB641AFBB302001F9F10 /* UIViewController+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A9EB471AFBB302001F9F10 /* UIViewController+REFrostedViewController.m */; };
 		70A9EB6D1AFBB398001F9F10 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A9EB691AFBB398001F9F10 /* LaunchScreen.xib */; };
 		70A9EB6E1AFBB398001F9F10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A9EB6B1AFBB398001F9F10 /* Main.storyboard */; };
+		70B9BD671B0EBC9800862792 /* dbUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B9BD661B0EBC9800862792 /* dbUser.m */; };
+		70B9BD6A1B0FA84000862792 /* SingleSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B9BD691B0FA84000862792 /* SingleSample.m */; };
+		70B9BD6C1B0FB1C000862792 /* switch_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B9BD6B1B0FB1C000862792 /* switch_camera.png */; };
+		70B9BD6F1B10D03200862792 /* dbImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B9BD6E1B10D03200862792 /* dbImage.m */; };
 		70C1384C1AFE685E00A3E0EC /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C1384B1AFE685E00A3E0EC /* ProfileController.m */; };
 		70C138521AFE68D000A3E0EC /* profile-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70C1384D1AFE68D000A3E0EC /* profile-1.jpg */; };
 		70C138531AFE68D000A3E0EC /* profile-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70C1384E1AFE68D000A3E0EC /* profile-2.jpg */; };
@@ -154,6 +158,13 @@
 		70A9EB471AFBB302001F9F10 /* UIViewController+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+REFrostedViewController.m"; path = "Cloud/UIViewController+REFrostedViewController.m"; sourceTree = "<group>"; };
 		70A9EB6A1AFBB398001F9F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Cloud/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		70A9EB6C1AFBB398001F9F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Cloud/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70B9BD651B0EBC9800862792 /* dbUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbUser.h; sourceTree = "<group>"; };
+		70B9BD661B0EBC9800862792 /* dbUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbUser.m; sourceTree = "<group>"; };
+		70B9BD681B0FA84000862792 /* SingleSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleSample.h; sourceTree = "<group>"; };
+		70B9BD691B0FA84000862792 /* SingleSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSample.m; sourceTree = "<group>"; };
+		70B9BD6B1B0FB1C000862792 /* switch_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera.png; sourceTree = "<group>"; };
+		70B9BD6D1B10D03200862792 /* dbImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbImage.h; sourceTree = "<group>"; };
+		70B9BD6E1B10D03200862792 /* dbImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbImage.m; sourceTree = "<group>"; };
 		70C1384A1AFE685E00A3E0EC /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
 		70C1384B1AFE685E00A3E0EC /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		70C1384D1AFE68D000A3E0EC /* profile-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profile-1.jpg"; sourceTree = "<group>"; };
@@ -247,6 +258,8 @@
 				70C138611AFEA48C00A3E0EC /* ResultGroup.m */,
 				E8D4A2411B0D0AF80083B07E /* IndividualResult.h */,
 				E8D4A2421B0D0AF80083B07E /* IndividualResult.m */,
+				70B9BD681B0FA84000862792 /* SingleSample.h */,
+				70B9BD691B0FA84000862792 /* SingleSample.m */,
 				70C1385F1AFE9A3B00A3E0EC /* pics */,
 				70C1384A1AFE685E00A3E0EC /* ProfileController.h */,
 				70C1384B1AFE685E00A3E0EC /* ProfileController.m */,
@@ -274,6 +287,10 @@
 				70A9EB681AFBB38F001F9F10 /* UI */,
 				70A9EB671AFBB32E001F9F10 /* Camera */,
 				70A9EB661AFBB324001F9F10 /* Navigation */,
+				70B9BD6D1B10D03200862792 /* dbImage.h */,
+				70B9BD6E1B10D03200862792 /* dbImage.m */,
+				70B9BD651B0EBC9800862792 /* dbUser.h */,
+				70B9BD661B0EBC9800862792 /* dbUser.m */,
 			);
 			name = Cloud;
 			sourceTree = "<group>";
@@ -340,6 +357,7 @@
 		70C1385F1AFE9A3B00A3E0EC /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				70B9BD6B1B0FB1C000862792 /* switch_camera.png */,
 				E8D4A24A1B0D0B560083B07E /* header_bg2.png */,
 				E8D4A2481B0D0B300083B07E /* search_2.png */,
 				E8D4A2441B0D0B040083B07E /* bg_2.png */,
@@ -479,6 +497,7 @@
 				70569BC31AFCE5F0005DDE2A /* pink_bg6.jpg in Resources */,
 				70C138551AFE68D000A3E0EC /* profile.jpg in Resources */,
 				70C138541AFE68D000A3E0EC /* profile-3.jpg in Resources */,
+				70B9BD6C1B0FB1C000862792 /* switch_camera.png in Resources */,
 				E8D4A2461B0D0B040083B07E /* bg_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,10 +524,12 @@
 				70A9EB5F1AFBB302001F9F10 /* REFrostedContainerViewController.m in Sources */,
 				70A9EB4F1AFBB302001F9F10 /* CameraShutterButton.m in Sources */,
 				70C138621AFEA48C00A3E0EC /* ResultGroup.m in Sources */,
+				70B9BD671B0EBC9800862792 /* dbUser.m in Sources */,
 				70A9EB591AFBB302001F9F10 /* LaunchCameraButton.m in Sources */,
 				70A9EB531AFBB302001F9F10 /* CaptureSessionManager.m in Sources */,
 				70375FE61AFC3AD600EF34F0 /* UITableGridViewCell.m in Sources */,
 				70A9EB5B1AFBB302001F9F10 /* MenuViewController.m in Sources */,
+				70B9BD6F1B10D03200862792 /* dbImage.m in Sources */,
 				70A9EB5C1AFBB302001F9F10 /* NavigationController.m in Sources */,
 				70375FE01AFC3A3F00EF34F0 /* ViewController.m in Sources */,
 				70A9EB4C1AFBB302001F9F10 /* CameraFlashButton.m in Sources */,
@@ -524,6 +545,7 @@
 				70A9EB621AFBB302001F9F10 /* UIImage+REFrostedViewController.m in Sources */,
 				70A9EB511AFBB302001F9F10 /* CameraToggleButton.m in Sources */,
 				70A9EB4D1AFBB302001F9F10 /* CameraFocalReticule.m in Sources */,
+				70B9BD6A1B0FA84000862792 /* SingleSample.m in Sources */,
 				70A550851AFBFAC50098FAB3 /* LoginController.m in Sources */,
 				70A9EB5A1AFBB302001F9F10 /* main.m in Sources */,
 				70A9EB641AFBB302001F9F10 /* UIViewController+REFrostedViewController.m in Sources */,

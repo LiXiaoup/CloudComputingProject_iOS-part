@@ -15,6 +15,7 @@
 
 @property (nonatomic, weak) IBOutlet UITextField * passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatpassField;
+@property (weak, nonatomic) IBOutlet UITextField *bioField;
 
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 

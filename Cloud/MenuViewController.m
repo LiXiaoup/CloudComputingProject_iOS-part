@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "HomeViewController.h"
 #import "UIViewController+REFrostedViewController.h"
+#import "SingleSample.h"
 @interface MenuViewController ()
 
 @end
@@ -37,8 +38,9 @@
         imageView.layer.shouldRasterize = YES;
         imageView.clipsToBounds = YES;
         
+        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
-        label.text = @"Rachel";
+        label.text = [SingleSample sharedSingleSample].username;
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];

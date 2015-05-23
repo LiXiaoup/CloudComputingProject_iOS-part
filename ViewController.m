@@ -11,8 +11,13 @@
 #import "UIImageButton.h"
 #import "CameraSessionView.h"
 #import "ResultGroup.h"
+#import "SingleSample.h"
 #define kImageWidth  118 //UITableViewCell里面图片的宽度
 #define kImageHeight  118 //UITableViewCell里面图片的高度
+
+static NSString* const kBaseURL = @"http://192.168.0.16:3000/";
+static NSString* const kSearch = @"files";
+
 @interface ViewController ()<CACameraSessionDelegate>
 
 @property (nonatomic, strong) CameraSessionView *cameraView;
@@ -45,8 +50,6 @@
     [self.buttonCamera setBackgroundImage:[UIImage imageNamed:@"search-icon@2x.jpg"] forState:UIControlStateNormal];
     
    // self.headerView.backgroundColor = mainColor;
-    
-    
     
 }
 
@@ -189,6 +192,29 @@
 -(void)didCaptureImage:(UIImage *)image {
     NSLog(@"CAPTURED IMAGE");
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:kSearch]]; //1
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST"; //2
+    [request addValue:@"image/png" forHTTPHeaderField:@"Content-Type"]; //3
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSData* bytes = UIImagePNGRepresentation(image); //4
+    NSURLSessionUploadTask* task = [session uploadTaskWithRequest:request fromData:bytes completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
+        if (error == nil) {
+            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"success:%@",myString);
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+        }
+    }];
+    [task resume];
+    
     [self.cameraView removeFromSuperview];
 }
 
@@ -210,4 +236,21 @@
 }
 
 
+- (IBAction)imagePick:(id)sender {
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc]
+                                                 init];
+    pickerController.delegate = self;
+    [self presentModalViewController:pickerController animated:YES];
+}
+
+#pragma mark -
+#pragma mark UIImagePickerControllerDelegate
+
+- (void) imagePickerController:(UIImagePickerController *)picker
+         didFinishPickingImage:(UIImage *)image
+                   editingInfo:(NSDictionary *)editingInfo
+{
+    //self.imageView.image = image;
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

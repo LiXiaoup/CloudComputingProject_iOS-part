@@ -8,6 +8,8 @@
 
 #import "ProfileController.h"
 #import <QuartzCore/QuartzCore.h>
+#include "dbUser.h"
+#include "SingleSample.h"
 
 @interface ProfileController ()
 
@@ -27,6 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if([SingleSample sharedSingleSample].username)
+    {
+        NSLog(@"the username is %@",[SingleSample sharedSingleSample].username);
+    }
+    
+    dbUser *user = [dbUser getUserInfo:[SingleSample sharedSingleSample].username];
+
 	
     UIColor* mainColor = [UIColor colorWithRed:242.0/255 green:117.0/255 blue:151.0/255 alpha:1.0f];
     
@@ -35,11 +45,11 @@
     
     self.nameLabel.textColor =  [UIColor whiteColor];
     self.nameLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];
-    self.nameLabel.text = @"Maria Llewellyngot";
+    self.nameLabel.text = user.username;
     
     self.locationLabel.textColor =  [UIColor whiteColor];
     self.locationLabel.font =  [UIFont fontWithName:fontName size:14.0f];
-    self.locationLabel.text = @"London, UK";
+    self.locationLabel.text = user.email;
     
     UIFont* countLabelFont = [UIFont fontWithName:boldFontName size:20.0f];
     self.brandCountLabel.textColor =  mainColor;
@@ -89,11 +99,11 @@
     
     self.joinedValueLabel.textColor =  mainColor;
     self.joinedValueLabel.font =  valueFont;
-    self.joinedValueLabel.text = @"1 Year Ago";
+    self.joinedValueLabel.text = user.start_time;
     
     self.bioValueLabel.textColor =  mainColor;
     self.bioValueLabel.font =  valueFont;
-    self.bioValueLabel.text = @"Founder, CEO of Mavin Records, Entrepreneur mom and action gal";
+    self.bioValueLabel.text = user.bio;
     
     
     self.profileBgImageView.image = [UIImage imageNamed:@"pink_bg12.gif"];

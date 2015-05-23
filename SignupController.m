@@ -8,8 +8,9 @@
 
 #import "SignupController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LoginController.h"
 
-static NSString* const kBaseURL = @"http://localhost:8081/";
+static NSString* const kBaseURL = @"http://160.39.196.65:8081/";
 static NSString* const kSignup = @"signup";
 
 @interface SignupController()
@@ -90,13 +91,21 @@ static NSString* const kSignup = @"signup";
     self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.emailField.layer.borderWidth = 1.0f;
     
+    UIView* leftView5 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 41, 20)];
+    self.bioField.leftViewMode = UITextFieldViewModeAlways;
+    self.bioField.leftView = leftView5;
+    
+    self.bioField.backgroundColor = [UIColor whiteColor];
+    self.bioField.placeholder = @"Email address";
+    self.bioField.font = [UIFont fontWithName:fontName size:16.0f];
+    self.bioField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
+    self.bioField.layer.borderWidth = 1.0f;
+    
     self.loginButton.backgroundColor = darkColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.loginButton setTitle:@"SIGN UP" forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
-    
-    
    
     
     self.infoLabel.textColor =  [UIColor darkGrayColor];
@@ -126,21 +135,69 @@ static NSString* const kSignup = @"signup";
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     
-    request.HTTPMethod = @"GET"; //2
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"]; //3
+    request.HTTPMethod = @"POST"; //2
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"]; //3
+    
+    
+    NSString* queryString = [NSString stringWithFormat:@"{\"username\":\"%@\",\"password\":\"%@\",\"confirm_password\":\"%@\",\"email\":\"%@\",\"bio\":\"%@\"}",self.usernameField.text,self.passwordField.text,self.repeatpassField.text,self.emailField.text,self.bioField.text];
+    NSLog(@"%@",queryString);
+    
+    
+    
+    NSData* data = [queryString dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPBody = data;
+    
     
     NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration]; //4
     NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
     
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
         if (error == nil) {
-            [self.objects removeAllObjects]; //2
-            NSArray* responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            NSLog(@"received %lu items", (unsigned long)responseArray.count);
+            //NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //NSLog(@"%@",myString);
+            
+            NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSString* msg = responseDict[@"msg"];
+            NSLog(@"%@",msg);
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+                if ([msg  isEqual: @"signed up"]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up Success!"
+                                                                    message:[NSString stringWithFormat: @"%@ ",msg]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    //先获取UIStoryBoard对象，参数为文件名
+                    UIStoryboard *mainStoryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    //获取SecondViewController实例，参数是StoryBoard ID,选中View Controller,在Identity Inspector中
+                    LoginController *second=[mainStoryBoard instantiateViewControllerWithIdentifier:@"LoginController4"];
+                    //设置过渡的样式，和显示的样式
+                    second.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                    //显示
+                    [self presentViewController:second animated:YES completion:nil];
+                }
+                else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign Up Failed!"
+                                                                    message:[NSString stringWithFormat: @"%@ ",msg]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+            }];
+
+            
+        }
+        else
+        {
+            NSLog(@"%@",error);
         }
     }];
     
-    [dataTask resume]; //8
+    [dataTask resume];
+    
+    
     
 }
 @end

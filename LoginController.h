@@ -22,13 +22,16 @@
 @property (nonatomic, weak) IBOutlet UILabel * titleLabel;
 
 @property (nonatomic, weak) IBOutlet UIImageView * headerImageView;
+
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @property (nonatomic, weak) IBOutlet UIView * infoView;
+
 
 @property (nonatomic, weak) IBOutlet UILabel * infoLabel;
 
 @property (nonatomic, weak) IBOutlet UIView * overlayView;
 
+- (IBAction)ButtonLogin:(id)sender;
 
 @end

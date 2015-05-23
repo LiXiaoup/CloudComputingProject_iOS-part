@@ -8,6 +8,11 @@
 
 #import "LoginController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "RootViewController.h"
+#import "SingleSample.h"
+
+static NSString* const kBaseURL = @"http://160.39.196.65:8081/";
+static NSString* const kLogin = @"login";
 
 @interface LoginController ()
 
@@ -64,13 +69,13 @@
     
     self.loginButton.backgroundColor = darkColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
-    [self.loginButton setTitle:@"SIGN UP HERE" forState:UIControlStateNormal];
+    [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     
     self.forgotButton.backgroundColor = [UIColor clearColor];
     self.forgotButton.titleLabel.font = [UIFont fontWithName:fontName size:12.0f];
-    [self.forgotButton setTitle:@"Forgot Password?" forState:UIControlStateNormal];
+    [self.forgotButton setTitle:@"Sign Up" forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:darkColor forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     
@@ -104,6 +109,68 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)ButtonLogin:(id)sender {
+    
+    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:kLogin]]; //1
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"POST"; //2
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"]; //3
+    
+    
+    NSString* queryString = [NSString stringWithFormat:@"{\"username\":\"%@\",\"password\":\"%@\"}",self.usernameField.text,self.passwordField.text];
+    NSLog(@"%@",queryString);
+    
+    NSData* data = [queryString dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPBody = data;
+    
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration]; //4
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
+        if (error == nil) {
+            //NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            
+            
+            NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSString* msg = responseDict[@"msg"];
+            NSLog(@"%@",msg);
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+                if ([msg isEqual: @"login success"]) {
+                    //single sample
+                    [SingleSample sharedSingleSample].username = self.usernameField.text;
+                    
+                    //先获取UIStoryBoard对象，参数为文件名
+                    UIStoryboard *mainStoryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    //获取SecondViewController实例，参数是StoryBoard ID,选中View Controller,在Identity Inspector中
+                    RootViewController *second=[mainStoryBoard instantiateViewControllerWithIdentifier:@"rootController"];
+                    //设置过渡的样式，和显示的样式
+                    //second.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                    //显示
+                    [self presentViewController:second animated:YES completion:nil];
+                }
+                else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed!"
+                                                                    message:[NSString stringWithFormat: @"%@ ",msg]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+            }];
+        }
+        else
+        {
+            NSLog(@"%@",error);
+        }
+    }];
+    
+    [dataTask resume]; //8
 }
 
 @end

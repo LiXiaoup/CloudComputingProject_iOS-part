@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonCamera;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+- (IBAction)imagePick:(id)sender;
 
 @end

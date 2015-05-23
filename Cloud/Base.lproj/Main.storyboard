@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AQd-dk-CnK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
@@ -51,10 +51,10 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="57" y="110" width="252" height="48"/>
+                                            <rect key="frame" x="37" y="108" width="277" height="50"/>
                                         </variation>
                                         <connections>
-                                            <action selector="Camera:" destination="QLO-rP-a6S" eventType="touchUpInside" id="wkV-BR-Pvw"/>
+                                            <action selector="imagePick:" destination="QLO-rP-a6S" eventType="touchUpInside" id="VAc-PE-UeZ"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="sAR-j9-qXT">
@@ -63,11 +63,24 @@
                                             <rect key="frame" x="85" y="27" width="196" height="66"/>
                                         </variation>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V74-xZ-lfN">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" image="switch_camera.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="308" y="119" width="30" height="26"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="Camera:" destination="QLO-rP-a6S" eventType="touchUpInside" id="XJR-Gw-VRi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="TUy-eY-NNp"/>
                                         <exclude reference="sAR-j9-qXT"/>
+                                        <exclude reference="V74-xZ-lfN"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -75,6 +88,7 @@
                                     <mask key="subviews">
                                         <include reference="TUy-eY-NNp"/>
                                         <include reference="sAR-j9-qXT"/>
+                                        <include reference="V74-xZ-lfN"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -254,7 +268,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Khc-CL-Fi4">
                                 <rect key="frame" x="25" y="382" width="271" height="19"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Forgot Pass">
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -262,13 +276,16 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="65" y="429" width="271" height="19"/>
+                                    <rect key="frame" x="65" y="429" width="271" height="30"/>
                                 </variation>
+                                <connections>
+                                    <segue destination="4gE-OL-zmh" kind="show" id="Isq-0T-8Is"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gt3-cJ-wAt">
                                 <rect key="frame" x="0.0" y="301" width="320" height="62"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Login">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -279,7 +296,7 @@
                                     <rect key="frame" x="-16" y="360" width="416" height="61"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="4gE-OL-zmh" kind="show" id="wmp-Yv-4Ya"/>
+                                    <action selector="ButtonLogin:" destination="AQd-dk-CnK" eventType="touchUpInside" id="OXT-Q5-oS2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -321,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uO1-pQ-T5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1672.5" y="-1090"/>
+            <point key="canvasLocation" x="-1594.5" y="-1014"/>
         </scene>
         <!--Signup Controller-->
         <scene sceneID="5WS-i2-gyA">
@@ -384,7 +401,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="211" width="400" height="54"/>
+                                    <rect key="frame" x="0.0" y="210" width="400" height="54"/>
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-1y-bfu">
@@ -393,7 +410,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="265" width="400" height="54"/>
+                                    <rect key="frame" x="0.0" y="263" width="400" height="54"/>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="bio" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e4z-lg-cos">
+                                <rect key="frame" x="0.0" y="260" width="320" height="41"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="316" width="400" height="54"/>
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mO-Ml-iGA">
@@ -407,11 +433,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="-32" y="316" width="432" height="61"/>
+                                    <rect key="frame" x="0.0" y="371" width="432" height="61"/>
                                 </variation>
                                 <connections>
                                     <action selector="ButtonSignup:" destination="4gE-OL-zmh" eventType="touchUpInside" id="hLX-2w-xRM"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="ETn-eu-hlB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -423,6 +448,7 @@
                                 <exclude reference="z84-iu-2Uf"/>
                                 <exclude reference="foN-ti-hp5"/>
                                 <exclude reference="WPO-1y-bfu"/>
+                                <exclude reference="e4z-lg-cos"/>
                                 <exclude reference="3mO-Ml-iGA"/>
                             </mask>
                         </variation>
@@ -433,11 +459,13 @@
                                 <include reference="z84-iu-2Uf"/>
                                 <include reference="foN-ti-hp5"/>
                                 <include reference="WPO-1y-bfu"/>
+                                <include reference="e4z-lg-cos"/>
                                 <include reference="3mO-Ml-iGA"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="bioField" destination="e4z-lg-cos" id="RsT-kk-3yT"/>
                         <outlet property="emailField" destination="WPO-1y-bfu" id="wGe-Dt-oom"/>
                         <outlet property="infoLabel" destination="yMM-XK-XK1" id="Zgy-Lj-tDV"/>
                         <outlet property="infoView" destination="xqm-lz-Jfb" id="3Fv-bf-hI9"/>
@@ -1114,9 +1142,7 @@
         <image name="button_bg.png" width="456" height="46"/>
         <image name="header_bg2.png" width="292" height="101"/>
         <image name="search_2.png" width="226" height="44"/>
+        <image name="switch_camera.png" width="30" height="26"/>
         <image name="title.png" width="245" height="80"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ETn-eu-hlB"/>
-    </inferredMetricsTieBreakers>
 </document>
