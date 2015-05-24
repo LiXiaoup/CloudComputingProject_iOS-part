@@ -16,6 +16,7 @@
 		70569BC91AFCE772005DDE2A /* search-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70569BC81AFCE772005DDE2A /* search-icon@2x.png */; };
 		70569BCB1AFCEEEE005DDE2A /* Elli saab.png in Resources */ = {isa = PBXBuildFile; fileRef = 70569BCA1AFCEEEE005DDE2A /* Elli saab.png */; };
 		70569BCE1AFCFFDC005DDE2A /* SignupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70569BCD1AFCFFDC005DDE2A /* SignupController.m */; };
+		70882F6B1B12168800640B60 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 70882F6A1B12168800640B60 /* ODRefreshControl.m */; };
 		70A550851AFBFAC50098FAB3 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A550841AFBFAC50098FAB3 /* LoginController.m */; };
 		70A550881AFBFAD20098FAB3 /* BaseLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A550871AFBFAD20098FAB3 /* BaseLoginController.m */; };
 		70A5508A1AFBFE3F0098FAB3 /* running.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70A550891AFBFE3F0098FAB3 /* running.jpg */; };
@@ -101,6 +102,8 @@
 		70569BCA1AFCEEEE005DDE2A /* Elli saab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Elli saab.png"; sourceTree = "<group>"; };
 		70569BCC1AFCFFDC005DDE2A /* SignupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupController.h; sourceTree = "<group>"; };
 		70569BCD1AFCFFDC005DDE2A /* SignupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupController.m; sourceTree = "<group>"; };
+		70882F691B12168800640B60 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		70882F6A1B12168800640B60 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		70A550831AFBFAC50098FAB3 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		70A550841AFBFAC50098FAB3 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		70A550861AFBFAD20098FAB3 /* BaseLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoginController.h; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 		70A9EB161AFBB2F4001F9F10 /* Cloud */ = {
 			isa = PBXGroup;
 			children = (
+				70882F691B12168800640B60 /* ODRefreshControl.h */,
+				70882F6A1B12168800640B60 /* ODRefreshControl.m */,
 				E8D4A2501B0D0EBD0083B07E /* title.png */,
 				E8D4A24E1B0D0E510083B07E /* title_2.png */,
 				70C138601AFEA48C00A3E0EC /* ResultGroup.h */,
@@ -526,6 +531,7 @@
 				70C138621AFEA48C00A3E0EC /* ResultGroup.m in Sources */,
 				70B9BD671B0EBC9800862792 /* dbUser.m in Sources */,
 				70A9EB591AFBB302001F9F10 /* LaunchCameraButton.m in Sources */,
+				70882F6B1B12168800640B60 /* ODRefreshControl.m in Sources */,
 				70A9EB531AFBB302001F9F10 /* CaptureSessionManager.m in Sources */,
 				70375FE61AFC3AD600EF34F0 /* UITableGridViewCell.m in Sources */,
 				70A9EB5B1AFBB302001F9F10 /* MenuViewController.m in Sources */,

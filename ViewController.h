@@ -12,8 +12,9 @@
 
 - (IBAction)Camera:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *buttonCamera;
-
+@property NSMutableArray *history;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (nonatomic, strong) UITableView* feedTableView;
 - (IBAction)imagePick:(id)sender;
 
 @end

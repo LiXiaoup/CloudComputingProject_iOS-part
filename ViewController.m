@@ -12,11 +12,17 @@
 #import "CameraSessionView.h"
 #import "ResultGroup.h"
 #import "SingleSample.h"
+#import "dbImage.h"
+#import "ResultGroup.h"
+#import "ODRefreshControl.h"
 #define kImageWidth  118 //UITableViewCell里面图片的宽度
 #define kImageHeight  118 //UITableViewCell里面图片的高度
 
-static NSString* const kBaseURL = @"http://192.168.0.16:3000/";
+static NSString* const kBaseURL = @"http://160.39.196.152:3000/";
 static NSString* const kSearch = @"files";
+static NSString* const kLogin = @"login";
+static NSString* const kHistory = @"history";
+
 
 @interface ViewController ()<CACameraSessionDelegate>
 
@@ -28,6 +34,7 @@ static NSString* const kSearch = @"files";
 
 @implementation ViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,7 +42,7 @@ static NSString* const kSearch = @"files";
     self.view.backgroundColor = [UIColor whiteColor];
     UIColor* mainColor = [UIColor colorWithRed:246.0/255 green:207.0/255 blue:226.0/255 alpha:1.0f];
     
-    self.image = [self cutCenterImage:[UIImage imageNamed:@"5.jpg"]  size:CGSizeMake(100, 100)];
+    self.image = [self cutCenterImage:[UIImage imageNamed:@"2.jpg"]  size:CGSizeMake(100, 100)];
     
     CGSize mSize = [[UIScreen mainScreen] bounds].size;
     CGFloat tableHeight = 200;
@@ -50,7 +57,13 @@ static NSString* const kSearch = @"files";
     [self.buttonCamera setBackgroundImage:[UIImage imageNamed:@"search-icon@2x.jpg"] forState:UIControlStateNormal];
     
    // self.headerView.backgroundColor = mainColor;
-    
+    self.history = [SingleSample sharedSingleSample].history;
+    for(NSString *his in self.history)
+    {
+        NSLog(@"%@",his);
+    }
+    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -60,12 +73,16 @@ static NSString* const kSearch = @"files";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    //may have problem
+    return self.history.count/3+1;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     static NSString *identifier = @"Cell";
+
     //自定义UITableGridViewCell，里面加了个NSArray用于放置里面的3个图片按钮
     UITableGridViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
@@ -73,6 +90,17 @@ static NSString* const kSearch = @"files";
         cell.selectedBackgroundView = [[UIView alloc] init];
         NSMutableArray *array = [NSMutableArray array];
         for (int i=0; i<3; i++) {
+            NSLog(@"%ld, count is %ld",indexPath.row*3+i,self.history.count/3);            //image url here
+            NSURL *url;
+            if(indexPath.row*3+i>=self.history.count)
+            {
+                url =  [NSURL URLWithString:@"http://therandywhite.com/wp-content/uploads/2014/11/white.png"];
+            }
+            else{
+                url = [NSURL URLWithString:[self.history objectAtIndex:indexPath.row*3+i]];
+            }
+            NSData *data= [[NSData alloc] initWithContentsOfURL:url];
+            
             //自定义继续UIButton的UIImageButton 里面只是加了2个row和column属性
             UIImageButton *button = [UIImageButton buttonWithType:UIButtonTypeCustom];
             button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
@@ -80,10 +108,12 @@ static NSString* const kSearch = @"files";
             //button.column = i;
             [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
             [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            [button setBackgroundImage:self.image forState:UIControlStateNormal];
+            
+            [button setBackgroundImage:[[UIImage alloc] initWithData:data] forState:UIControlStateNormal];
             [cell addSubview:button];
             [array addObject:button];
         }
+        
         [cell setValue:array forKey:@"buttons"];
     }
     
@@ -105,6 +135,83 @@ static NSString* const kSearch = @"files";
 }
 
 -(void)imageItemClick:(UIImageButton *)button{
+    
+    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:kHistory]]; //1
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"POST"; //2
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"]; //3
+    
+    
+    NSString* queryString = [NSString stringWithFormat:@"{\"base\":\"%@\"}",[self.history objectAtIndex:button.row*3+button.column]];
+    NSLog(@"%@",queryString);
+    
+    NSData* data = [queryString dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPBody = data;
+    NSMutableArray* history= [[NSMutableArray alloc] init];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration]; //4
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
+        if (error == nil) {
+            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",myString);
+            
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+         //   NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+         //   NSArray* resultArray = responseDict[@"url"];
+            
+            NSError *e = nil;
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+            for(int i=0;i<jsonArray.count;i++)
+            {
+                NSDictionary *item =  [jsonArray objectAtIndex:i];
+                NSString *url = [item objectForKey:@"url"];
+                
+                [result addObject:url];
+                NSLog(@"%@",url);
+            }
+            
+            while([result count]==0)
+            {
+                sleep(1);
+                NSLog(@"waiting");
+            }
+            NSLog(@"%ld",result.count);
+            for(NSString *re in result)
+            {
+                NSLog(@"%@",re);
+            }
+
+            
+            UIStoryboard *mainStoryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            //获取SecondViewController实例，参数是StoryBoard ID,选中View Controller,在Identity Inspector中
+            ResultGroup *second=[mainStoryBoard instantiateViewControllerWithIdentifier:@"ResultGroup"];
+            //设置过渡的样式，和显示的样式
+            second.result = result;
+            second.flag  = @"hey";
+            second.inputImageUrl = [self.history objectAtIndex:button.row*3+button.column];
+            second.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+         //   second.modalPresentationStyle=UIModalPresentationFormSheet;
+            //显示
+            [self presentViewController:second animated:YES completion:nil];
+              
+              
+        }
+        
+    }];
+    
+    NSLog(@"%ld",[[SingleSample sharedSingleSample].history count]);
+    
+    [dataTask resume]; //8
+
+    
+    
+    
+    
+    
     /*
     NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -116,14 +223,10 @@ static NSString* const kSearch = @"files";
     
     
     //先获取UIStoryBoard对象，参数为文件名
-    UIStoryboard *mainStoryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //获取SecondViewController实例，参数是StoryBoard ID,选中View Controller,在Identity Inspector中
-    ResultGroup *second=[mainStoryBoard instantiateViewControllerWithIdentifier:@"ResultGroup"];
-    //设置过渡的样式，和显示的样式
-    second.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    second.modalPresentationStyle=UIModalPresentationFormSheet;
-    //显示
-    [self presentViewController:second animated:YES completion:nil];
+    
+    //
+    
+    
     
    
 }
@@ -192,28 +295,29 @@ static NSString* const kSearch = @"files";
 -(void)didCaptureImage:(UIImage *)image {
     NSLog(@"CAPTURED IMAGE");
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    NSString *name =[dbImage uploadImage:image];
     
-    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:kSearch]]; //1
+    NSLog(@"%@",name);
+    NSString *inputImageUrl = [NSString stringWithFormat:@"https://s3-us-west-2.amazonaws.com/cloud.snapscout/%@.png",name];
+    //self.imageView.image = image;
+    NSMutableArray *result =[dbImage searchImage:image imageName:name];
+    while([result count]==0)
+    {
+        sleep(1);
+        NSLog(@"waiting");
+    }
     
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = @"POST"; //2
-    [request addValue:@"image/png" forHTTPHeaderField:@"Content-Type"]; //3
-    
-    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
-    
-    NSData* bytes = UIImagePNGRepresentation(image); //4
-    NSURLSessionUploadTask* task = [session uploadTaskWithRequest:request fromData:bytes completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
-        if (error == nil) {
-            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"success:%@",myString);
-        }
-        else
-        {
-            NSLog(@"error:%@",error);
-        }
-    }];
-    [task resume];
+    //jump to another page
+    UIStoryboard *mainStoryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //获取SecondViewController实例，参数是StoryBoard ID,选中View Controller,在Identity Inspector中
+    ResultGroup *second=[mainStoryBoard instantiateViewControllerWithIdentifier:@"ResultGroup"];
+    //设置过渡的样式，和显示的样式
+    //second.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //显示
+    second.inputImageUrl = inputImageUrl;
+    second.result = result;
+    second.image = image;
+    [self presentViewController:second animated:YES completion:nil];
     
     [self.cameraView removeFromSuperview];
 }
@@ -240,6 +344,7 @@ static NSString* const kSearch = @"files";
     UIImagePickerController *pickerController = [[UIImagePickerController alloc]
                                                  init];
     pickerController.delegate = self;
+
     [self presentModalViewController:pickerController animated:YES];
 }
 
@@ -250,7 +355,102 @@ static NSString* const kSearch = @"files";
          didFinishPickingImage:(UIImage *)image
                    editingInfo:(NSDictionary *)editingInfo
 {
+    NSString *name =[dbImage uploadImage:image];
+
+    NSLog(@"%@",name);
     //self.imageView.image = image;
+    NSMutableArray *result =[dbImage searchImage:image imageName:name];
+    NSString *inputImageUrl = [NSString stringWithFormat:@"https://s3-us-west-2.amazonaws.com/cloud.snapscout/%@.png",name];
+    while([result count]==0)
+    {
+        sleep(1);
+        NSLog(@"waiting");
+    }
+    
+    //jump to another page
+    UIStoryboard *mainStoryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //获取SecondViewController实例，参数是StoryBoard ID,选中View Controller,在Identity Inspector中
+    ResultGroup *second=[mainStoryBoard instantiateViewControllerWithIdentifier:@"ResultGroup"];
+    //设置过渡的样式，和显示的样式
+    //second.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //显示
+    second.result = result;
+    second.image = image;
+    second.inputImageUrl = inputImageUrl;
     [self dismissModalViewControllerAnimated:YES];
+    [self presentViewController:second animated:YES completion:nil];
+    
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    } else {
+        return YES;
+    }
+}
+
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+    double delayInSeconds = 2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [refreshControl endRefreshing];
+    });
+    NSURL* url = [NSURL URLWithString:[kBaseURL stringByAppendingPathComponent:kLogin]]; //1
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    request.HTTPMethod = @"POST"; //2
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"]; //3
+    
+    
+    NSString* queryString = [NSString stringWithFormat:@"{\"username\":\"hey\",\"password\":\"1\"}"];
+    NSLog(@"%@",queryString);
+    
+    NSData* data = [queryString dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPBody = data;
+    NSMutableArray* history= [[NSMutableArray alloc] init];
+    
+    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration]; //4
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
+        if (error == nil) {
+            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //NSLog(@"%@",myString);
+            
+            
+            NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            NSString* msg = responseDict[@"msg"];
+            NSArray* historyArray = responseDict[@"history"];
+            for(int i=0;i<historyArray.count;i++)
+            {
+                NSString* test = [[[responseDict objectForKey:@"history"] objectAtIndex:i] objectForKey:@"url"];
+                    NSLog(@"%@",test);
+                [history addObject:test];
+            }
+            [SingleSample sharedSingleSample].history = history;
+            self.history = history;
+
+        }
+     
+    }];
+    
+    NSLog(@"%ld",[[SingleSample sharedSingleSample].history count]);
+    
+    [dataTask resume]; //8
+    sleep(1);
+    
+    NSLog(@"%@", self.tableView);
+    [super viewDidLoad];
+    
+    [self.tableView reloadData];
+    
+   // [[self tableView] reloadData];
+    NSLog(@"reoload!!!");
+
+}
+
 @end

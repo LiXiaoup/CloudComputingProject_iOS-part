@@ -11,7 +11,7 @@
 #import "RootViewController.h"
 #import "SingleSample.h"
 
-static NSString* const kBaseURL = @"http://160.39.196.65:8081/";
+static NSString* const kBaseURL = @"http://160.39.196.152:3000/";
 static NSString* const kLogin = @"login";
 
 @interface LoginController ()
@@ -133,12 +133,26 @@ static NSString* const kLogin = @"login";
     
     NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
         if (error == nil) {
-            //NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //NSLog(@"%@",myString);
             
             
             NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
             NSString* msg = responseDict[@"msg"];
-            NSLog(@"%@",msg);
+            
+            
+            NSMutableArray* history= [[NSMutableArray alloc] init];
+            
+            NSArray* historyArray = responseDict[@"history"];
+            for(int i=0;i<historyArray.count;i++)
+            {
+                NSString* test = [[[responseDict objectForKey:@"history"] objectAtIndex:i] objectForKey:@"url"];
+            //    NSLog(@"%@",test);
+                [history addObject:test];
+            }
+
+            [SingleSample sharedSingleSample].history = history;
+            
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
                 if ([msg isEqual: @"login success"]) {

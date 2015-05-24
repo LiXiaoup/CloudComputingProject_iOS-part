@@ -10,6 +10,7 @@
 
 @implementation SingleSample
 @synthesize username;
+@synthesize history;
 
 + (SingleSample *)sharedSingleSample
 {

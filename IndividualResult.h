@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "dbImage.h"
 
 @interface IndividualResult : UIViewController
 
@@ -24,5 +25,13 @@
 @property (nonatomic, weak) IBOutlet UILabel* individualResultBrandLabel;
 @property (nonatomic, weak) IBOutlet UILabel* individualResultDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UILabel* individualResultPriceLabel;
+@property (weak, nonatomic) IBOutlet UIView *buttonView;
+@property dbImage *image;
+@property NSMutableArray *result;
+@property UIImage *inputImage;
+@property NSString *inputImageUrl;
+- (IBAction)shopButton:(id)sender;
+- (IBAction)likeButton:(id)sender;
 
+- (IBAction)backButton:(id)sender;
 @end

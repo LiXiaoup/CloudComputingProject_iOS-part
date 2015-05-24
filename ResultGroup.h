@@ -21,5 +21,17 @@
 @property (weak, nonatomic) IBOutlet UIImageView *resultGroupImageView5;
 @property (weak, nonatomic) IBOutlet UIImageView *resultGroupImageView6;
 
+@property NSMutableArray *result;
+@property UIImage *image;
+@property NSString *inputImageUrl;
+@property NSString *flag;
+
+- (IBAction)button1:(id)sender;
+- (IBAction)button2:(id)sender;
+- (IBAction)button3:(id)sender;
+- (IBAction)button4:(id)sender;
+- (IBAction)button5:(id)sender;
+- (IBAction)button6:(id)sender;
+
 @end
 

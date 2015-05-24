@@ -11,6 +11,7 @@
 @interface SingleSample : NSObject
 
 @property (nonatomic, retain) NSString *username;
+@property (nonatomic,retain) NSMutableArray *history;
 + (SingleSample *)sharedSingleSample;
 
 @end

@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LoginController.h"
 
-static NSString* const kBaseURL = @"http://160.39.196.65:8081/";
+static NSString* const kBaseURL = @"http://160.39.196.152:3000/";
 static NSString* const kSignup = @"signup";
 
 @interface SignupController()
@@ -68,8 +68,7 @@ static NSString* const kSignup = @"signup";
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
-    
-    
+        
     UIView* leftView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 41, 20)];
     self.repeatpassField.leftViewMode = UITextFieldViewModeAlways;
     self.repeatpassField.leftView = leftView3;
@@ -79,7 +78,6 @@ static NSString* const kSignup = @"signup";
     self.repeatpassField.font = [UIFont fontWithName:fontName size:16.0f];
     self.repeatpassField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.repeatpassField.layer.borderWidth = 1.0f;
-    
     
     UIView* leftView4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 41, 20)];
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
@@ -107,14 +105,11 @@ static NSString* const kSignup = @"signup";
     [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
    
-    
     self.infoLabel.textColor =  [UIColor darkGrayColor];
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];
     self.infoLabel.text = @"Please provide the information below";
     
     self.infoView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
-    
-    
 }
 
 -(IBAction)toggleNav:(id)sender{

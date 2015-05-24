@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AQd-dk-CnK">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
@@ -36,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_bg2.png" translatesAutoresizingMaskIntoConstraints="NO" id="hmL-W9-zkn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pink_bg2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hmL-W9-zkn">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="180"/>
@@ -859,18 +859,6 @@
                                     <rect key="frame" x="18" y="458" width="106" height="105"/>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2be-hU-HSK">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="320" y="28" width="32" height="30"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="Vic-Ul-plr" kind="show" id="bPR-4G-BK6"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmf-O4-36M">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Back">
@@ -881,6 +869,78 @@
                                 </variation>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="N95-zW-vHV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxc-dK-i77">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="244" y="125" width="102" height="105"/>
+                                </variation>
+                                <connections>
+                                    <action selector="button1:" destination="ZvC-hN-BdJ" eventType="touchUpInside" id="0ga-tS-cPm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xia-S1-QPD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="244" y="238" width="102" height="105"/>
+                                </variation>
+                                <connections>
+                                    <action selector="button2:" destination="ZvC-hN-BdJ" eventType="touchUpInside" id="D6h-u4-Qef"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-BS-wLf">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="242" y="345" width="102" height="105"/>
+                                </variation>
+                                <connections>
+                                    <action selector="button3:" destination="ZvC-hN-BdJ" eventType="touchUpInside" id="FVa-i5-HWh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBc-cz-VcI">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="244" y="458" width="102" height="105"/>
+                                </variation>
+                                <connections>
+                                    <action selector="button4:" destination="ZvC-hN-BdJ" eventType="touchUpInside" id="luZ-Yy-quP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oft-U0-lYD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="130" y="458" width="102" height="105"/>
+                                </variation>
+                                <connections>
+                                    <action selector="button5:" destination="ZvC-hN-BdJ" eventType="touchUpInside" id="5uf-9e-yd1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzy-iL-kKV">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="458" width="102" height="105"/>
+                                </variation>
+                                <connections>
+                                    <action selector="button6:" destination="ZvC-hN-BdJ" eventType="touchUpInside" id="1c9-N3-tn8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -896,8 +956,13 @@
                                 <exclude reference="8BB-y2-BlF"/>
                                 <exclude reference="h4w-SK-oXN"/>
                                 <exclude reference="2hd-jf-5gK"/>
-                                <exclude reference="2be-hU-HSK"/>
                                 <exclude reference="pmf-O4-36M"/>
+                                <exclude reference="sxc-dK-i77"/>
+                                <exclude reference="xia-S1-QPD"/>
+                                <exclude reference="QfS-BS-wLf"/>
+                                <exclude reference="QBc-cz-VcI"/>
+                                <exclude reference="oft-U0-lYD"/>
+                                <exclude reference="Dzy-iL-kKV"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -911,8 +976,17 @@
                                 <include reference="8BB-y2-BlF"/>
                                 <include reference="h4w-SK-oXN"/>
                                 <include reference="2hd-jf-5gK"/>
-                                <include reference="2be-hU-HSK"/>
                                 <include reference="pmf-O4-36M"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="sxc-dK-i77"/>
+                                <include reference="xia-S1-QPD"/>
+                                <include reference="QfS-BS-wLf"/>
+                                <include reference="QBc-cz-VcI"/>
+                                <include reference="oft-U0-lYD"/>
+                                <include reference="Dzy-iL-kKV"/>
                             </mask>
                         </variation>
                     </view>
@@ -931,12 +1005,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DE-2z-2Pj" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="235.5" y="-254"/>
+            <point key="canvasLocation" x="235.5" y="-254.25"/>
         </scene>
         <!--Individual Result-->
         <scene sceneID="faQ-rE-g1w">
             <objects>
-                <viewController id="Vic-Ul-plr" customClass="IndividualResult" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IndividualResult" id="Vic-Ul-plr" customClass="IndividualResult" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BkM-fY-WH8"/>
                         <viewControllerLayoutGuide type="bottom" id="rn8-JD-v00"/>
@@ -974,6 +1048,9 @@
                                         <variation key="widthClass=compact" fixedFrame="YES">
                                             <rect key="frame" x="8" y="20" width="189" height="21"/>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="14" width="194" height="113"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -991,7 +1068,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="72" width="217" height="66"/>
+                                    <rect key="frame" x="16" y="72" width="213" height="127"/>
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S13-Oo-eBZ">
@@ -1006,7 +1083,7 @@
                                             <rect key="frame" x="8" y="0.0" width="98" height="37"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="9" y="0.0" width="98" height="37"/>
+                                            <rect key="frame" x="8" y="31" width="112" height="88"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -1023,18 +1100,9 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="237" y="72" width="128" height="66"/>
+                                    <rect key="frame" x="237" y="72" width="128" height="127"/>
                                 </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vKF-F9-vxg">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="131" width="349" height="348"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="151" width="349" height="341"/>
-                                </variation>
-                            </imageView>
                             <view alpha="0.55000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywl-bf-Jg9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
@@ -1046,24 +1114,30 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyo-S0-NtQ">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="20"/>
                                         <state key="normal" title="Like">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                             <rect key="frame" x="8" y="17" width="176" height="36"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="likeButton:" destination="Vic-Ul-plr" eventType="touchUpInside" id="MvV-fC-ICf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSt-im-UnP">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="20"/>
                                         <state key="normal" title="Shop">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                             <rect key="frame" x="204" y="16" width="167" height="36"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="shopButton:" destination="Vic-Ul-plr" eventType="touchUpInside" id="AC8-gQ-Bhr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <variation key="default">
@@ -1094,9 +1168,18 @@
                                     <rect key="frame" x="9" y="20" width="35" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="ZvC-hN-BdJ" kind="show" id="GfE-3j-Rh1"/>
+                                    <action selector="backButton:" destination="Vic-Ul-plr" eventType="touchUpInside" id="NHb-Tu-caf"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vKF-F9-vxg">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="131" width="349" height="348"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="237" width="349" height="341"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -1104,9 +1187,9 @@
                                 <exclude reference="5jY-UF-Bww"/>
                                 <exclude reference="u6t-nE-whL"/>
                                 <exclude reference="S13-Oo-eBZ"/>
-                                <exclude reference="vKF-F9-vxg"/>
                                 <exclude reference="ywl-bf-Jg9"/>
                                 <exclude reference="8Qn-kZ-4o7"/>
+                                <exclude reference="vKF-F9-vxg"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1114,9 +1197,9 @@
                                 <include reference="5jY-UF-Bww"/>
                                 <include reference="u6t-nE-whL"/>
                                 <include reference="S13-Oo-eBZ"/>
-                                <include reference="vKF-F9-vxg"/>
                                 <include reference="ywl-bf-Jg9"/>
                                 <include reference="8Qn-kZ-4o7"/>
+                                <include reference="vKF-F9-vxg"/>
                             </mask>
                         </variation>
                     </view>
@@ -1140,7 +1223,7 @@
     </scenes>
     <resources>
         <image name="button_bg.png" width="456" height="46"/>
-        <image name="header_bg2.png" width="292" height="101"/>
+        <image name="pink_bg2.jpg" width="2880" height="1800"/>
         <image name="search_2.png" width="226" height="44"/>
         <image name="switch_camera.png" width="30" height="26"/>
         <image name="title.png" width="245" height="80"/>

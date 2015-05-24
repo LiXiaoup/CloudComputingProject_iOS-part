@@ -8,7 +8,7 @@
 
 #import "dbUser.h"
 
-static NSString* const kBaseURL = @"http://160.39.196.65:8081/";
+static NSString* const kBaseURL = @"http://160.39.196.152:3000/";
 static NSString* const kUserInfo = @"userinfo";
 
 @implementation dbUser
@@ -34,8 +34,6 @@ dbUser *user;
     
     request.HTTPMethod = @"GET"; //2
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"]; //3
-    
-    
     
     NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration]; //4
     NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
@@ -64,7 +62,7 @@ dbUser *user;
     while(!user.username)
     {
         NSLog(@"%@",user.username);
-        sleep(0.1);
+        sleep(1);
     }
     
     
